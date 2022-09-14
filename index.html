@@ -9,12 +9,47 @@
 
         <script>
             var campoMinado = new CampoMinado();
-            
-            
-            document.getElementById('exibir-execucao').innerHTML += '----------- Início do jogo -----------';
-            document.getElementById('exibir-execucao').innerHTML += '<pre>' + campoMinado.Tabuleiro() + '</pre>';
-            
+      
+            document.getElementById("exibir-execucao").innerHTML +=
+              "----------- Início do jogo -----------";
+            document.getElementById("exibir-execucao").innerHTML +=
+              "<pre>" + campoMinado.Tabuleiro() + "</pre>";
+      
             // Realize sua codificação a partir deste ponto, boa sorte!
-        </script>
+      
+            var statusFinal = 0;
+      
+              while (statusFinal == 0) {
+      
+                var jogada = [Math.floor(Math.random() * 10), Math.floor(Math.random() * 10)]
+      
+                campoMinado.Abrir(jogada[0], jogada[1]);
+      
+                statusCorrente = campoMinado.JogoStatus();
+      
+                if (statusCorrente == 0) {
+                  document.getElementById("exibir-execucao").innerHTML +=
+                    "----------- Jogo em andamento -----------";
+                  document.getElementById("exibir-execucao").innerHTML +=
+                    "<pre>" + campoMinado.Tabuleiro() + "</pre>";
+                }
+      
+                if (statusCorrente == 1) {
+                  document.getElementById("exibir-execucao").innerHTML +=
+                    "----------- Você venceu :) -----------";
+                  document.getElementById("exibir-execucao").innerHTML +=
+                    "<pre>" + campoMinado.Tabuleiro() + "</pre>";
+                }
+                if (statusCorrente == 2) {
+                  document.getElementById("exibir-execucao").innerHTML +=
+                    "----------- Você perdeu :( -----------";
+                  document.getElementById("exibir-execucao").innerHTML +=
+                    "<pre>" + campoMinado.Tabuleiro() + "</pre>";
+                }
+      
+                statusFinal = campoMinado.JogoStatus();
+              }
+            
+          </script>
     </body>
 </html>
